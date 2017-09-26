@@ -18,7 +18,7 @@ class Service(models.Model):
     def get_absolute_url(self):
         return reverse('wfs', kwargs={'service_id': self.pk})
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -33,7 +33,7 @@ class FeatureType(models.Model):
     fields = models.CharField(max_length=254, null=True, blank=True)
     query = models.TextField(default="{}", help_text="JSON containing the query to be passed to a Django queryset .filter()")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     def save(self, *args, **kwargs):
@@ -48,7 +48,7 @@ class MetadataURL(models.Model):
     featuretype = models.ForeignKey(FeatureType)
     url = models.URLField()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.url
 
 
@@ -59,5 +59,5 @@ class BoundingBox(models.Model):
     maxx = models.CharField(max_length=254)
     maxy = models.CharField(max_length=254)
 
-    def __unicode__(self):
+    def __str__(self):
         return "((" + self.minx + ", ", self.miny + "), (" + self.maxx + ", " + self.maxy + "))"
